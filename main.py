@@ -1,13 +1,10 @@
-import argparse
-import sys
-import torchvision
-import torch
 import click
-from torch import optim, nn
+import torch
+from torch import nn, optim
 
-from data import mnist
-from model import MyAwesomeModel, train, validation
 import model
+from data import mnist
+from model import MyAwesomeModel, validation
 
 
 @click.group()
@@ -16,26 +13,26 @@ def cli():
 
 
 @click.command()
-@click.option("--lr", default=1e-3, help='learning rate to use for training')
+@click.option("--lr", default=1e-3, help="learning rate to use for training")
 def train(lr):
     print("Training day and night")
     print(lr)
-
-    
     model1 = MyAwesomeModel(784, 10, [512, 256, 128])
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model1.parameters(), lr=lr)
     trainloader, testloader = mnist()
 
-    model.train(model1, trainloader, testloader, criterion, optimizer, epochs=5, print_every=40)
+    model.train(
+        model1, trainloader, testloader, criterion, optimizer, epochs=5, print_every=40
+    )
 
-    checkpoint = {'hidden_size': 128,
-            'output_size': 10,
-            'state_dict': model1.state_dict()}
+    checkpoint = {
+        "hidden_size": 128,
+        "output_size": 10,
+        "state_dict": model1.state_dict(),
+    }
 
-    torch.save(checkpoint, 'checkpoint.pth')
-
-
+    torch.save(checkpoint, "checkpoint.pth")
 
 
 @click.command()
@@ -53,7 +50,8 @@ def evaluate(model_checkpoint):
     criterion = nn.NLLLoss()
 
     test_loss, accuracy = validation(model1, testloader, criterion)
-    print(f'test loss: {test_loss}, accuracy: {accuracy}')
+    print(f"test loss: {test_loss}, accuracy: {accuracy}")
+
 
 cli.add_command(train)
 cli.add_command(evaluate)
@@ -61,9 +59,3 @@ cli.add_command(evaluate)
 
 if __name__ == "__main__":
     cli()
-
-
-    
-    
-    
-    
