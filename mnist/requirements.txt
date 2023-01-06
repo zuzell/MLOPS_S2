@@ -2,6 +2,10 @@
 -e .
 
 # external requirements
+torch
+torchvision
+numpy
+os
 click
 Sphinx
 coverage
