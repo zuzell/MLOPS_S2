@@ -140,8 +140,8 @@ def train(lr):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model1.parameters(), lr=lr)
 
-    train_data = torch.load("mnist/data/processed/train.pth")
-    test_data = torch.load("mnist/data/processed/test.pth")
+    train_data = torch.load("../data/processed/train.pth")
+    test_data = torch.load("../data/processed/test.pth")
 
     trainloader = torch.utils.data.DataLoader(
         train_data, batch_size=64, shuffle=True
@@ -160,7 +160,7 @@ def train(lr):
         "state_dict": model1.state_dict(),
     }
 
-    torch.save(checkpoint, f"C:/Users/zuzal/Masters/MLOPs/MLOPS_S2/mnist/models/checkpoint.pth")
+    torch.save(checkpoint, f"C:/Users/zuzal/Masters/MLOPs/MLOPS_S2/models/checkpoint.pth")
 
 
 cli.add_command(train)

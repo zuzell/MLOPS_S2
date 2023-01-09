@@ -37,7 +37,7 @@ def evaluate(model_checkpoint):
     print(model_checkpoint)
 
 
-    test_data = torch.load("mnist/data/processed/test.pth")
+    test_data = torch.load("data/processed/test.pth")
 
 
     testloader = torch.utils.data.DataLoader(
@@ -57,4 +57,4 @@ def evaluate(model_checkpoint):
 
 
 if __name__ == "__main__":
-    evaluate("C:/Users/zuzal/Masters/MLOPs/MLOPS_S2/mnist/models/checkpoint.pth")
+    evaluate("C:/Users/zuzal/Masters/MLOPs/MLOPS_S2/models/checkpoint.pth")
