@@ -8,8 +8,8 @@ from src.data.make_dataset import MNISTdata
 import torch
 
 #dataset = MNIST(...)
-test_data = torch.load("../data/processed/test.pth")
-train_data = torch.load("../data/processed/train.pth")
+test_data = torch.load("data/processed/test.pth")
+train_data = torch.load("data/processed/train.pth")
 
 N_train = 25000
 N_test=5000
